@@ -28,7 +28,7 @@ Version      : 1.0
 */
 
 body {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 300;
     height: 100%;
     font-family: 'Open Sans', sans-serif;
@@ -105,7 +105,7 @@ fieldset {
 }
 
 .section-title h2 {
-    font-size: 12px; 
+    font-size: 20px; 
     margin-bottom: 10px;
     font-weight: 200;
     margin-top: 0;
@@ -963,19 +963,24 @@ fieldset {
 * ----------------------------------------------------------------------------------------
 */
 
-
+/* SECCIÓN DE CONTACTO CON IMAGEN DE FONDO */
 .contact-me-area {
+  position: relative;
   background:
-  linear-gradient(to bottom, #C8C8C8, rgba(200, 200, 200, 0) 20%), /* arriba */
-  linear-gradient(to top, #494949, rgba(73, 73, 73, 0) 20%),      /* abajo */
-  url("../images/lake.jpeg") center/cover no-repeat;
+    linear-gradient(to bottom, #C8C8C8, rgba(200, 200, 200, 0) 20%),
+    linear-gradient(to top, #494949, rgba(73, 73, 73, 0) 20%),
+    url("../images/lake.jpeg") center/cover no-repeat;
   color: #fff;
+  padding: 60px 20px; /* ajusta al contenido */
+  min-height: 300px;  /* asegura altura mínima */
+  background-blend-mode: overlay;
 }
 
-.contact-me-area .container {
+
+/*.contact-me-area .container {
   position: relative;
   top: -150px;
-}
+}*/
 
 .contact-me-area p {
   color: #000 !important;
@@ -1088,6 +1093,15 @@ fieldset {
  /*    border-bottom: 1px solid; */
     padding-bottom: 5px;
 }
+
+.single-contact-details {
+  background: rgba(200, 200, 200, 0.2);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  margin-right: 150px;
+}
+
 
 /*
 * ----------------------------------------------------------------------------------------
@@ -1378,3 +1392,131 @@ fieldset {
     /*background-color: #434242 !important;*/
 }
 
+/* Asegura que las imágenes no desborden la pantalla */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Evita que textos o bloques fijos sean demasiado anchos */
+body {
+  overflow-x: hidden;
+  word-wrap: break-word;
+}
+
+/* Opcional: que los contenedores respeten el ancho de la pantalla */
+.container, .content, main {
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+@media (max-width: 768px) {
+  /* Desactivar display: table para que no interfiera */
+  .display-table {
+    display: block !important;
+    height: auto !important;
+  }
+
+  .display-table-cell {
+    display: block !important;
+    vertical-align: top !important;
+    height: auto !important;
+  }
+
+  /* El contenedor flex, para apilar en columna */
+  /*.row.flex-center {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Ordenar y centrar texto e imagen */
+  /*.header-text {
+    order: 1 !important;
+    text-align: center !important;
+    margin-bottom: 20px !important;
+  }
+
+  /*.about-image {
+    order: 2 !important;
+    margin-top: 20px !important;
+  }
+
+  /* Ajustar tamaño imagen circular 
+  .about-image img.circular {
+    width: 60vw !important;
+    height: 60vw !important;
+    max-width: 250px !important;
+    max-height: 250px !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    border-radius: 50% !important;
+    border: 2px solid #000000 !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+  }
+}*/
+
+.row.flex-center {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.header-text {
+  flex: 1 1 300px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* CONTENEDOR imagen: tamaño fijo, sin reescalar */
+.about-image {
+  flex: 0 0 200px;     /* fijo 200px, no crece ni encoge */
+  width: 200px;
+  height: 200px;
+  margin-top: 20px;
+
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+
+  border: 2px solid #000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* IMAGEN: ocupa todo el contenedor, cubriendo sin deformar */
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* MEDIA QUERY: en pantallas pequeñas, ocultar la imagen y apilar */
+@media (max-width: 768px) {
+  .row.flex-center {
+    flex-direction: column;
+  }
+
+  .header-text {
+    flex: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-image {
+    display: none !important; /* ocultar sin excepciones */
+    flex: none !important;     /* evitar que flex cambie */
+    width: auto !important;    /* evitar cualquier ajuste de tamaño */
+    height: auto !important;
+  }
+}
