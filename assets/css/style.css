@@ -963,7 +963,6 @@ fieldset {
 * ----------------------------------------------------------------------------------------
 */
 
-/* SECCIÓN DE CONTACTO CON IMAGEN DE FONDO */
 .contact-me-area {
   position: relative;
   background:
@@ -971,7 +970,7 @@ fieldset {
     linear-gradient(to top, #494949, rgba(73, 73, 73, 0) 20%),
     url("../images/lake.jpeg") center/cover no-repeat;
   color: #fff;
-  padding: 60px 20px; /* ajusta al contenido */
+  padding: 60px 20px; ajusta al contenido
   min-height: 300px;  /* asegura altura mínima */
   background-blend-mode: overlay;
 }
