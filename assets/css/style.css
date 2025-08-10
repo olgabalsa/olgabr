@@ -55,6 +55,7 @@ h6 {
 a {
   color: #ebb8d1 !important;       /* tu color */
     transition: all 0.2s;
+    text-decoration: none; 
 }
 
 a:hover {
@@ -692,13 +693,42 @@ fieldset {
     padding-bottom: 95px;
 }
 
-.about-image img {
-    border: 1px solid #444;
-    width: 400px;
+.about-image {
+    width: min(45vw, 450px);
+    max-width: 450px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
 }
 
-.about-image {
-    text-align: right;
+.about-image img,
+.about-image img.circular {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 0px !important;
+    border: none !important;
+    border-radius: 0 !important; /* El contenedor ya es circular */
+    position: static !important; /* Eliminar position: absolute */
+    transform: none !important;  /* Eliminar transformaciones */
+    top: auto !important;
+    left: auto !important;
+}
+
+/* Para pantallas pequeñas */
+@media (max-width: 768px) {
+    .about-image {
+        width: 250px;
+        height: 250px;
+        max-width: 250px;
+    }
 }
 
 .about-text h2 {
@@ -965,14 +995,22 @@ fieldset {
 
 .contact-me-area {
   position: relative;
-  background:
-    linear-gradient(to bottom, #C8C8C8, rgba(200, 200, 200, 0) 20%),
-    linear-gradient(to top, #494949, rgba(73, 73, 73, 0) 20%),
-    url("../images/lake.jpeg") center/cover no-repeat;
+  background: url("../images/lake.jpeg") center/cover no-repeat;
   color: #fff;
-  padding: 60px 20px; ajusta al contenido
-  min-height: 300px;  /* asegura altura mínima */
-  background-blend-mode: overlay;
+  padding: 120px 20px;
+  min-height: 400px;
+  
+  /* Fusión suave con gradientes en los bordes */
+  background-image: 
+    linear-gradient(to bottom, 
+      transparent 0%,
+      rgba(0, 0, 0, 0.1) 15%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.1) 85%,
+      transparent 100%
+    ),
+    url("../images/lake.jpeg");
+  background-blend-mode: multiply;
 }
 
 
@@ -982,18 +1020,33 @@ fieldset {
 }*/
 
 .contact-me-area p {
-  color: #000 !important;
+  color: #393939 !important;
 }
 
 .contact-me-area a {
-  color: black !important;
-  text-decoration: underline !important;
+  color: #ffffff !important;
+  text-decoration: none;   
   transition: color 0.3s ease !important;
 }
 
 .contact-me-area a:hover {
   color: #cc367f !important; /* rosa */
   text-decoration: underline !important;
+}
+
+.copyright-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.copyright-container p {
+  font-size: 14px;
+  color: rgb(159, 159, 159);
+  margin: 0;
+  padding: 8px 0;
 }
 
 .form-control {
@@ -1094,7 +1147,7 @@ fieldset {
 }
 
 .single-contact-details {
-  background: rgba(200, 200, 200, 0.2);
+  background: rgba(200, 200, 200, 0);
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -1153,7 +1206,7 @@ fieldset {
     font-size: 14px;
     color: #7c7979;
     margin-bottom: 0;
-    text-align: right;
+    text-align: center;
 }
 
 /* MIS CAMBIOS A PARTIR DE AQUÍ */
@@ -1161,17 +1214,6 @@ fieldset {
 .row.flex-center {
   display: flex;
   align-items: center;
-}
-
-
-.about-image img.circular {
-  width: 450px;
-  height: 450px;
-  object-fit: cover;
-  object-position: center 0%; /* mover el foco del círculo hacia arriba */
-  border-radius: 50%;
-  border: 2px solid #000000;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .libre-baskerville-regular {
@@ -1190,14 +1232,6 @@ fieldset {
 .col-md-6 {
   position: relative;
 }
-
-.about-image img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-60%, -50%);
-}
-
 
 .row.align-items-stretch {
   display: flex;
@@ -1238,7 +1272,7 @@ fieldset {
 
 /* al pasar el ratón */
 .paper-link:hover .paper-entry {
-  border: 2px solid #fff;
+  border: 1px solid #fff;
   background-color: rgba(0, 0, 0, 0);
 }
 
@@ -1386,9 +1420,10 @@ fieldset {
 }
 
 .cv-section {
-    background: linear-gradient(to bottom, #000000, #C9C9C9);
-    color: #fff;
-    /*background-color: #434242 !important;*/
+  background: linear-gradient(to bottom, #000000, #C9C9C9);
+  color: #fff;
+  /* Eliminar padding-bottom para fusión limpia */
+  padding-bottom: 0 !important;
 }
 
 /* Asegura que las imágenes no desborden la pantalla */
@@ -1423,39 +1458,6 @@ body {
     height: auto !important;
   }
 
-  /* El contenedor flex, para apilar en columna */
-  /*.row.flex-center {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-  }
-
-  /* Ordenar y centrar texto e imagen */
-  /*.header-text {
-    order: 1 !important;
-    text-align: center !important;
-    margin-bottom: 20px !important;
-  }
-
-  /*.about-image {
-    order: 2 !important;
-    margin-top: 20px !important;
-  }
-
-  /* Ajustar tamaño imagen circular 
-  .about-image img.circular {
-    width: 60vw !important;
-    height: 60vw !important;
-    max-width: 250px !important;
-    max-height: 250px !important;
-    object-fit: cover !important;
-    object-position: center top !important;
-    border-radius: 50% !important;
-    border: 2px solid #000000 !important;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
-  }
-}*/
-
 .row.flex-center {
   display: flex;
   flex-wrap: wrap;
@@ -1470,35 +1472,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* CONTENEDOR imagen: tamaño fijo, sin reescalar */
-.about-image {
-  flex: 0 0 200px;     /* fijo 200px, no crece ni encoge */
-  width: 200px;
-  height: 200px;
-  margin-top: 20px;
-
-  position: relative;
-  border-radius: 50%;
-  overflow: hidden;
-
-  border: 2px solid #000;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* IMAGEN: ocupa todo el contenedor, cubriendo sin deformar */
-.about-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 
 /* MEDIA QUERY: en pantallas pequeñas, ocultar la imagen y apilar */
 @media (max-width: 768px) {
@@ -1519,3 +1492,5 @@ body {
     height: auto !important;
   }
 }
+
+
