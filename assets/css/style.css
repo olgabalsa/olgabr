@@ -711,7 +711,7 @@ fieldset {
 .about-image img,
 .about-image img.circular {
     width: 100% !important;
-    height: 100% !important;
+    height: auto !important;
     object-fit: cover !important;
     object-position: center 0px !important;
     border: none !important;
